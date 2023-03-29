@@ -19,9 +19,9 @@ pipeline {
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'kubectl cluster-info'
-            sh 'kubectl apply -f hazelcast.yaml'
-            sh 'kubectl apply -f calculator.yaml'
+            sh "kubectl cluster-info"
+            sh "kubectl apply -f hazelcast.yaml"
+            sh "kubectl apply -f calculator.yaml"
           }
         }
       }
@@ -29,11 +29,11 @@ pipeline {
        steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-           sh 'chmod +x smoke-test.sh && ./smoke-test.sh'
+           sh "chmod +x smoke-test.sh && ./smoke-test.sh"
           }
         }
       }
+    }
   }
-}
-  }
+ }
 }
