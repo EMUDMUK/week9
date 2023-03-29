@@ -29,9 +29,7 @@ pipeline {
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'NODE_IP=$(kubectl get service/calculator-service -o jsonpath='{.spec.clusterIP}')'
-            sh 'NODE_PORT=$(kubectl get svc calculator-service -o=jsonpath='{.spec.ports[0].port}')'
-            sh 'curl http://${NODE_IP}:${NODE_PORT}/sum?a=1\&b=2'
+           sh 'chmod +x smoke-test.sh && ./smoke-test.sh'
           }
         }
       }
