@@ -26,7 +26,7 @@ pipeline {
         }
       }
       stage('Testing Service Sum') {     
-      steps {
+       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
            sh 'chmod +x smoke-test.sh && ./smoke-test.sh'
