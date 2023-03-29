@@ -30,6 +30,7 @@ pipeline {
        steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+           sleep 60
            sh "chmod +x smoke-test.sh && ./smoke-test.sh"
           }
         }
