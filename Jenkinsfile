@@ -15,17 +15,17 @@ pipeline {
     }
   }
   stages {
-    stage('Deploy App to Kubernetes') {     
+    stage('Deploy App to Kubernetes') {
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh "kubectl cluster-info"
-            sh "kubectl apply -f hazelcast.yaml"
-            sh "kubectl apply -f calculator.yaml"
-          }
+          sh "kubectl cluster-info"
+          sh "kubectl apply -f hazelcast.yaml"
+          sh "kubectl apply -f calculator.yaml"
         }
       }
-      stage('Testing Service Sum') {     
+    }
+     stage('Testing Service Sum') {     
        steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
