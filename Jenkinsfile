@@ -29,7 +29,7 @@ podTemplate(yaml: '''
 node(POD_LABEL) {
    stage('Deploying to prod') {
     container('cloud-sdk') {
-      stage('Build a gradle project') {
+      stage('Build a calculator project') {
         sh '''
         echo 'namespaces in the staging environment'
         kubectl get ns
@@ -42,6 +42,14 @@ node(POD_LABEL) {
         kubectl apply -f calculator.yaml -n prod
         
 '''
+}
+}
+}
+   stage('Testing Service Sum') {
+    container('cloud-sdk') {
+      stage('Testing calculator project') {
+        sleep 60
+        sh "chmod +x smoke-test.sh && ./smoke-test.sh"
 }
 }
 }
