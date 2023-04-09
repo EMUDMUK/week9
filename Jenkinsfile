@@ -48,7 +48,7 @@ node(POD_LABEL) {
    stage('Testing Service Sum') {
     container('cloud-sdk') {
       stage('Testing calculator project') {
-        sleep 60
+        sleep 90
         sh "chmod +x smoke-test.sh && ./smoke-test.sh"
 }
 }
