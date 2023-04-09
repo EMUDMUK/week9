@@ -38,7 +38,8 @@ node(POD_LABEL) {
         gcloud config set project kubernetes-382610
         gcloud container clusters get-credentials hello-cluster --region us-west1 
         echo 'namespaces in the prod environment'
-        git 'https://github.com/EMUDMUK/week9.git'
+        git clone 'https://github.com/EMUDMUK/week9.git'
+        cd week9
         kubectl apply -f hazelcast.yaml -n prod
         kubectl apply -f calculator.yaml -n prod
         
@@ -50,7 +51,11 @@ node(POD_LABEL) {
     container('cloud-sdk') {
       stage('Testing calculator project') {
         sleep 90
-        sh "chmod +x smoke-test.sh && ./smoke-test.sh"
+        sh '''
+        cd week9
+        chmod +x smoke-test.sh && ./smoke-test.sh
+'''
+}
 }
 }
 }
