@@ -60,4 +60,3 @@ node(POD_LABEL) {
 }
 }
 }
-}
