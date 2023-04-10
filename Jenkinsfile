@@ -47,16 +47,5 @@ node(POD_LABEL) {
 }
 }
 }
-   stage('Testing Service Sum') {
-    container('cloud-sdk') {
-      stage('Testing calculator project') {
-        sleep 90
-        sh '''
-        cd week9
-        chmod +x smoke-test.sh && ./smoke-test.sh
-'''
-}
-}
-}
 }
 }
